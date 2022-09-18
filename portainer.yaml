@@ -1,0 +1,30 @@
+namespace: "reporting"
+fullnameOverride: portainer
+
+image:
+  replicaCount: 1
+  repository: portainer/portainer-ce
+  pullPolicy: Always
+  containerPort: 9000
+  tag: "latest"
+  hostname: portainer
+  domainPath: ""
+  
+service:
+  type: ClusterIP
+
+resources:
+  requests:
+    cpu: 250m
+    memory: 750Mi
+
+serviceAccount:
+  create: false
+  annotations: {}
+  name: ""
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 100
+  targetCPUUtilizationPercentage: 80
